@@ -1,0 +1,10 @@
+.env
+.vscode
+__pycache__/
+*.pyc
+src/__pycache__/
+src/screens/__pycache__/
+src/screens/components/__pycache__/
+.streamlit/
+dist/
+build/

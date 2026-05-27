@@ -13,5 +13,5 @@ def main():
         case "teacher":
             teacher.main()
         case _:
-            home.main()
+            home.home_screen()
 main()
