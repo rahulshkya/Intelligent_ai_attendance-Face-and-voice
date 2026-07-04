@@ -8,3 +8,5 @@ src/screens/components/__pycache__/
 .streamlit/
 dist/
 build/
+venv/
+.streamlit/
