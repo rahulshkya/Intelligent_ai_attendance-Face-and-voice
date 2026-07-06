@@ -9,9 +9,9 @@ def main():
    
     match st.session_state['login_type']:
         case "student":
-            student.main()
+            student.student_screen()
         case "teacher":
-            teacher.main()
+            teacher()
         case _:
             home.home_screen()
 main()
