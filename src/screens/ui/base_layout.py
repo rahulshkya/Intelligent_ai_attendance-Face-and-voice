@@ -71,6 +71,22 @@ def style_base_layout():
         border: none !important;
         transition: transform 0.3s ease-in-out !important;}
 
+        .stButton>button{
+            background:linear-gradient(135deg,#5B5FEF,#7C3AED);
+            color:white;
+            border:none;
+            border-radius:12px;
+            height:55px;
+            font-size:18px;
+            font-weight:700;
+            transition:.3s;
+        }
+
+        .stButton>button:hover{
+            transform:scale(1.03);
+            background:linear-gradient(135deg,#7C3AED,#5B5FEF);
+        }
+
         button:hover{
         transform: scale(1.05) !important;
         </style>

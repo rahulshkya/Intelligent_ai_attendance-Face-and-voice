@@ -11,7 +11,7 @@ def main():
         case "student":
             student.student_screen()
         case "teacher":
-            teacher()
+            teacher.main()
         case _:
             home.home_screen()
 main()

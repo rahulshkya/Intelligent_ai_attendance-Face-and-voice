@@ -1,35 +1,207 @@
 import streamlit as st
-from src.screens.ui.base_layout import style_background_home
 from src.screens.components.header import header_home
-from src.screens.ui.base_layout import style_base_layout
 from src.screens.components.footer import footer_home
+from src.screens.ui.base_layout import (
+    style_background_home,
+    style_base_layout
+)
+
 
 def home_screen():
-     
-    header_home()
+
     style_background_home()
     style_base_layout()
-    col1, col2 = st.columns(2)
+
+    st.markdown("""
+    <style>
+
+    .hero{
+        text-align:center;
+        padding:20px;
+    }
+
+    .hero h1{
+        font-size:60px;
+        color:white;
+        margin-bottom:5px;
+        font-weight:800;
+    }
+
+    .hero p{
+        color:white;
+        font-size:20px;
+        opacity:0.9;
+    }
+
+    .card{
+        background:white;
+        padding:25px;
+        border-radius:22px;
+        text-align:center;
+        box-shadow:0px 8px 25px rgba(0,0,0,.18);
+        transition:.3s;
+        height:520px;
+    }
+
+    .card:hover{
+        transform:translateY(-8px);
+        box-shadow:0px 12px 35px rgba(0,0,0,.25);
+    }
+
+    .title{
+        font-size:34px;
+        font-weight:bold;
+        color:#2c3e50;
+        margin-top:15px;
+    }
+
+    .desc{
+        color:#666;
+        font-size:18px;
+        margin-top:10px;
+    }
+
+    .feature{
+        background:white;
+        border-radius:18px;
+        padding:20px;
+        text-align:center;
+        box-shadow:0px 5px 18px rgba(0,0,0,.12);
+    }
+
+    .feature h3{
+        color:#5B5FEF;
+    }
+
+    </style>
+    """, unsafe_allow_html=True)
+
+    header_home()
+
+    st.markdown("""
+    <div class="hero">
+        <h1>SNAP CLASS</h1>
+        <p>AI Powered Attendance Management System</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.write("")
+    st.write("")
+
+    col1, col2 = st.columns(2, gap="large")
+
     with col1:
-        st.markdown("""<div style='text-align:center;'><h2>I am a Student</h2></div>""", unsafe_allow_html=True)
-
+      with st.container(border=True):
+        
         st.image(
-            "https://imgs.search.brave.com/X4fMWCvjsidg8RkEioFQFRgxtIsRxKaGUqUmhT3lQYk/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudmVjdGVlenku/Y29tL3N5c3RlbS9y/ZXNvdXJjZXMvdGh1/bWJuYWlscy8wNDEv/MDQxLzA1NS9zbWFs/bC9zdHVkZW50LWxv/Z28taWNvbi1icmFu/ZC1pZGVudGl0eS1z/aWduLXN5bWJvbC10/ZW1wbGF0ZS12ZWN0/b3IuanBn",
-            width=250
+            "assets/student_logo.png",
+            width=230
         )
 
-        if st.button('Login as Student', use_container_width=True):
-            st.session_state['login_type'] = 'student'
+        st.markdown("""
+        <div class="title">
+        🎓 Student Portal
+        </div>
+
+        <div class="desc">
+        Login securely using Face Recognition and Voice Authentication.
+        </div>
+        """, unsafe_allow_html=True)
+
+        st.write("")
+        st.write("")
+
+        if st.button(
+            "🚀 Continue as Student",
+            use_container_width=True,
+            key="student_btn"
+        ):
+            st.session_state["login_type"] = "student"
             st.rerun()
+
+        st.markdown("</div>", unsafe_allow_html=True)
+
     with col2:
-        st.markdown("""<div style='text-align:center;'><h2>I am a Teacher</h2></div>""", unsafe_allow_html=True)
+      with st.container(border=True):
+       
 
         st.image(
-            "https://imgs.search.brave.com/EiiLV-gwZnr94kGhtwV9fKXdu2F-6MEodsckNCTRP1M/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9keW5h/bWljLmJyYW5kY3Jv/d2QuY29tL2Fzc2V0/L2xvZ28vOGJhNTZj/MmMtNjc0YS00NjI5/LWFhMTAtZWU5Njky/YzlhMGMxL2xvZ28t/c2VhcmNoLWdyaWQt/Mng_bG9nb1RlbXBs/YXRlVmVyc2lvbj0x/JnY9NjM4OTk2MzQ0/NzQ0NjMwMDAwJmxh/eW91dD1hdXRvLTEt/MQ",
-            width=250
+            "assets/teacher_logo.png",
+            width=230
         )
 
-        if st.button('Login as Teacher', use_container_width=True):
-            st.session_state['login_type'] = 'teacher'
+        st.markdown("""
+        <div class="title">
+        👨‍🏫 Teacher Portal
+        </div>
+
+        <div class="desc">
+        Manage students, attendance records and classroom activities.
+        </div>
+        """, unsafe_allow_html=True)
+
+        st.write("")
+        st.write("")
+
+        if st.button(
+            "🚀 Continue as Teacher",
+            use_container_width=True,
+            key="teacher_btn"
+        ):
+            st.session_state["login_type"] = "teacher"
             st.rerun()
+
+        st.markdown("</div>", unsafe_allow_html=True)
+
+    st.write("")
+    st.write("")
+    st.divider()
+
+    st.subheader("✨ Features")
+
+    f1, f2, f3, f4 = st.columns(4)
+
+    with f1:
+        st.markdown("""
+        <div class="feature">
+            <h3>😊</h3>
+            <b>Face Recognition</b>
+            <br><br>
+            Fast & Accurate Login
+        </div>
+        """, unsafe_allow_html=True)
+
+    with f2:
+        st.markdown("""
+        <div class="feature">
+            <h3>🎤</h3>
+            <b>Voice Login</b>
+            <br><br>
+            Optional Voice Authentication
+        </div>
+        """, unsafe_allow_html=True)
+
+    with f3:
+        st.markdown("""
+        <div class="feature">
+            <h3>⚡</h3>
+            <b>AI Powered</b>
+            <br><br>
+            Smart Attendance Detection
+        </div>
+        """, unsafe_allow_html=True)
+
+    with f4:
+        st.markdown("""
+        <div class="feature">
+            <h3>☁️</h3>
+            <b>Cloud Database</b>
+            <br><br>
+            Secure Supabase Storage
+        </div>
+        """, unsafe_allow_html=True)
+
+    st.write("")
+    st.write("")
+
     footer_home()

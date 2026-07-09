@@ -15,5 +15,158 @@ def header_home():
         unsafe_allow_html=True
     )
 
+
+from datetime import datetime
+
+
+def student_dashboard_header():
+
+    student = st.session_state["student_data"]
+
+    today = datetime.now().strftime("%d %B %Y")
+    current_time = datetime.now().strftime("%I:%M %p")
+
+    st.markdown(f"""
+    <style>
+
+    .dashboard-header{{
+        background:linear-gradient(135deg,#2563EB,#7C3AED);
+        border-radius:22px;
+        padding:32px;
+        color:white;
+        box-shadow:0 12px 35px rgba(0,0,0,.22);
+        margin-bottom:25px;
+    }}
+
+    .brand{{
+        font-size:36px;
+        font-weight:800;
+        letter-spacing:1px;
+    }}
+
+    .subtitle{{
+        font-size:17px;
+        opacity:.9;
+        margin-top:4px;
+    }}
+
+    .welcome{{
+        font-size:30px;
+        font-weight:700;
+        margin-top:25px;
+    }}
+
+    .status{
+        display:inline-block;
+        margin-top:12px;
+        background:rgba(255,255,255,.18);
+        padding:8px 18px;
+        border-radius:30px;
+        font-weight:600;
+    }
+
+    .metric-card{{
+        background:white;
+        border-radius:18px;
+        padding:20px;
+        text-align:center;
+        box-shadow:0 8px 25px rgba(0,0,0,.08);
+    }}
+
+    .metric-title{{
+        color:#777;
+        font-size:15px;
+    }}
+
+    .metric-value{{
+        color:#2563EB;
+        font-size:24px;
+        font-weight:bold;
+        margin-top:8px;
+    }}
+
+    </style>
+    """, unsafe_allow_html=True)
+
+    st.markdown(f"""
+    <div class="dashboard-header">
+
+        <div class="brand">
+            🎓 SnapClass
+        </div>
+
+        <div class="subtitle">
+            Intelligent AI Attendance System
+        </div>
+
+        <div class="welcome">
+            👋 Welcome, {student["name"]}
+        </div>
+
+        <div class="status">
+            🟢 Face Authentication Successful
+        </div>
+
+    </div>
+    """, unsafe_allow_html=True)
+
+    c1,c2,c3,c4=st.columns(4)
+
+    with c1:
+        st.markdown(f"""
+        <div class="metric-card">
+            <div class="metric-title">
+            🆔 Student ID
+            </div>
+
+            <div class="metric-value">
+            {student["student_id"]}
+            </div>
+
+        </div>
+        """,unsafe_allow_html=True)
+
+    with c2:
+        st.markdown(f"""
+        <div class="metric-card">
+            <div class="metric-title">
+            📅 Date
+            </div>
+
+            <div class="metric-value">
+            {today}
+            </div>
+
+        </div>
+        """,unsafe_allow_html=True)
+
+    with c3:
+        st.markdown(f"""
+        <div class="metric-card">
+            <div class="metric-title">
+            ⏰ Login Time
+            </div>
+
+            <div class="metric-value">
+            {current_time}
+            </div>
+
+        </div>
+        """,unsafe_allow_html=True)
+
+    with c4:
+        st.markdown("""
+        <div class="metric-card">
+
+            <div class="metric-title">
+            📷 Status
+            </div>
+
+            <div class="metric-value" style="color:green;">
+            VERIFIED
+            </div>
+
+        </div>
+        """,unsafe_allow_html=True)
    
 
