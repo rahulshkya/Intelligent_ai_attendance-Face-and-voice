@@ -115,46 +115,16 @@ def teacher_dashboard():
     </div>
     """, unsafe_allow_html=True)
 
-    # Info Cards
-    c1, c2, c3, c4 = st.columns(4)
-
-    with c1:
-        st.markdown(f"""
-        <div class="card">
-            <div class="title">Teacher ID</div>
-            <div class="value">
-                {teacher.get("teacher_id") or teacher.get("id")}
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
-
-    with c2:
-        st.markdown("""
-        <div class="card">
-            <div class="title">Today's Classes</div>
-            <div class="value">3</div>
-        </div>
-        """, unsafe_allow_html=True)
-
-    with c3:
-        st.markdown("""
-        <div class="card">
-            <div class="title">Students</div>
-            <div class="value">120</div>
-        </div>
-        """, unsafe_allow_html=True)
-
+   
     
     st.divider()
 
     st.write("")
     st.write("")
 
-    main4, main5 = st.columns(2)
+    main5 = st.columns(1)
 
-    with main4:
-        if st.button("📊 Attendance Reports", use_container_width=True):
-            st.session_state.current_teacher_tab = "reports"
+    
 
     with main5:
         if st.button("🚪 Logout", use_container_width=True): 
