@@ -122,12 +122,12 @@ def teacher_dashboard():
     st.write("")
     st.write("")
 
-    main5 = st.columns(1)
+    
 
     
 
-    with main5:
-        if st.button("🚪 Logout", use_container_width=True): 
+    
+    if st.button("🚪 Logout", use_container_width=True): 
             st.session_state['is_logged_in'] = False
             if "teacher_data" in st.session_state:
                 del st.session_state["teacher_data"]
