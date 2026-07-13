@@ -17,6 +17,7 @@ from src.screens.components.attendance_result_dialog import attendance_result_di
 import numpy as np
 from database.config import supabase 
 from src.screens.components.dialog_voice_attendance import Voice_attendance_dialog
+from database.db import get_teacher_subject_for_attendance
 
  
 def ensure_teacher_state():
@@ -51,7 +52,6 @@ def register_teacher(teacher_username,teacher_name,teacher_pass,teacher_pass_con
         return False, f"unexpexting error: {str(e)}"
 
 
-import streamlit as str
 
 
 def teacher_dashboard():
@@ -372,7 +372,40 @@ def manage_subjects_tab():
 
 
 def attendance_reports_tab():
-    st.header('Take ai attendace reports')
+    st.header('Attendance Reports')
+    teacher_id = st.session_state.teacher_data['teacher_id']
+    records=get_teacher_subject_for_attendance(teacher_id)
+    if not records:
+        st.warning("No attendance records found.")
+        return
+    data=[]
+
+    for r in records:
+        ts=r.get('timestamp')
+        data.append({
+            "ts_group":ts.split(" ")[0] if ts else "Unknown",
+            "time": datetime.fromisoformat(ts).strftime("%Y-%m-%d %I:%M %p") if ts else "Unknown",
+            "Subject": r["subjects"]["name"],
+            "Subject_code": r["subjects"]["subject_code"],
+            "is_present": bool(r.get('is_present',False))
+        })
+        
+    df=pd.DataFrame(data)
+    summary=(
+        df.groupby(['ts_group','time','Subject','Subject_code'])
+        .agg(
+            Present_count=('is_present','sum'),
+            Total_count=('is_present','count')
+        ).reset_index()
+    )
+    summary['Attendance Stats']=(
+        "✅"+summary['Present_count'].astype(str)+" /" +summary['Total_count'].astype(str)
+            )
+    display_df=(summary.sort_values (by='ts_group',ascending=False)
+                [['time','Subject','Subject_code','Attendance Stats']]
+                )
+    st.dataframe(display_df,hide_index=True,width="stretch")
+     
 
 def login_teacher(username,password):
     if not username or not password:

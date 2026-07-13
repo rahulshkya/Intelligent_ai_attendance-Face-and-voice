@@ -115,3 +115,13 @@ def get_student_attendence(student_id):
 def create_attendance(attendance_to_log):
     response=supabase.table("attendence_logs").insert(attendance_to_log).execute()
     return response.data
+
+def get_teacher_subject_for_attendance(teacher_id):
+    response = (
+    supabase
+    .table("attendence_logs")
+    .select("*,subjects!inner(*)")
+    .eq("subjects.teacher_id", teacher_id)
+    .execute()
+)
+    return response.data
