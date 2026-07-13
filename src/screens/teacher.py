@@ -430,7 +430,7 @@ def main():
     header_home()
     style_background_dashboard()
     style_base_layout()
-    footer_dashboard()
+    
     # Back button
     cols = st.columns([1, 2, 1])
     with cols[1]:
@@ -508,7 +508,7 @@ def main():
 
             st.rerun()
 
-    
+footer_dashboard()
 
 
 if __name__ == '__main__':
