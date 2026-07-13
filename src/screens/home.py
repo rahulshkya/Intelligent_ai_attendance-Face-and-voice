@@ -1,4 +1,5 @@
 import streamlit as st
+from src.screens.components.footer import footer_dashboard
 from src.screens.components.header import header_home
 from src.screens.ui.base_layout import (
     style_background_home,
@@ -188,7 +189,7 @@ def home_screen():
             Secure Supabase Storage
         </div>
         """, unsafe_allow_html=True)
-
+    footer_dashboard()
     st.write("")
     st.write("")
 
