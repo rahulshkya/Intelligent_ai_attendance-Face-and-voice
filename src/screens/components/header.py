@@ -1,4 +1,5 @@
 import streamlit as st
+from textwrap import dedent
 
 def header_home():
 
@@ -56,23 +57,29 @@ def student_dashboard_header():
         margin-top:25px;
     }}
 
-    .status{
+    .status{{
         display:inline-block;
         margin-top:12px;
         background:rgba(255,255,255,.18);
         padding:8px 18px;
         border-radius:30px;
         font-weight:600;
-    }
-
-    .metric-card{{
-        background:white;
-        border-radius:18px;
-        padding:20px;
-        text-align:center;
-        box-shadow:0 8px 25px rgba(0,0,0,.08);
     }}
 
+    .metric-card{{
+    background:white;
+    border-radius:18px;
+    padding:20px;
+    text-align:center;
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    min-height:140px;
+}}
     .metric-title{{
         color:#777;
         font-size:15px;
@@ -83,90 +90,92 @@ def student_dashboard_header():
         font-size:24px;
         font-weight:bold;
         margin-top:8px;
+        word-break: keep-all;
     }}
 
     </style>
     """, unsafe_allow_html=True)
-
-    st.markdown(f"""
+    
+    st.markdown(dedent(f"""
     <div class="dashboard-header">
 
-        <div class="brand">
+    <div class="brand">
             🎓 SnapClass
-        </div>
+    </div>
 
-        <div class="subtitle">
+    <div class="subtitle">
             Intelligent AI Attendance System
-        </div>
+    </div>
 
-        <div class="welcome">
+    <div class="welcome">
             👋 Welcome, {student["name"]}
-        </div>
+    </div>
 
-        <div class="status">
+    <div class="status">
             🟢 Face Authentication Successful
-        </div>
+    </div>
 
     </div>
-    """, unsafe_allow_html=True)
+    """), unsafe_allow_html=True)
 
-    c1,c2,c3,c4=st.columns(4)
+    c1,c2=st.columns(2)
 
     with c1:
-        st.markdown(f"""
+        st.markdown(dedent(f"""
         <div class="metric-card">
-            <div class="metric-title">
+        <div class="metric-title">
             🆔 Student ID
-            </div>
+        </div>
 
-            <div class="metric-value">
+        <div class="metric-value">
             {student["student_id"]}
-            </div>
+        </div>
 
         </div>
-        """,unsafe_allow_html=True)
+        """),unsafe_allow_html=True)
 
     with c2:
-        st.markdown(f"""
+        st.markdown(dedent(f"""
         <div class="metric-card">
-            <div class="metric-title">
+        <div class="metric-title">
             📅 Date
-            </div>
+        </div>
 
-            <div class="metric-value">
+        <div class="metric-value">
             {today}
-            </div>
+        </div>
 
         </div>
-        """,unsafe_allow_html=True)
-
+        """),unsafe_allow_html=True)
+    
+    c3,c4=st.columns(2)
     with c3:
-        st.markdown(f"""
+        st.markdown(dedent(f"""
         <div class="metric-card">
-            <div class="metric-title">
+        <div class="metric-title">
             ⏰ Login Time
-            </div>
+        </div>
 
-            <div class="metric-value">
+        <div class="metric-value">
             {current_time}
-            </div>
+        </div>
 
         </div>
-        """,unsafe_allow_html=True)
+        """),unsafe_allow_html=True)
 
     with c4:
-        st.markdown("""
+        st.markdown(dedent("""
         <div class="metric-card">
 
-            <div class="metric-title">
+        <div class="metric-title">
             📷 Status
-            </div>
+        </div>
 
-            <div class="metric-value" style="color:green;">
+        <div class="metric-value" style="color:green;">
             VERIFIED
-            </div>
+        </div>
 
         </div>
-        """,unsafe_allow_html=True)
+        """),unsafe_allow_html=True)
    
 

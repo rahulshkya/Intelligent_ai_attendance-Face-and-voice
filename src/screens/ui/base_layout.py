@@ -89,6 +89,7 @@ def style_base_layout():
 
         button:hover{
         transform: scale(1.05) !important;
+        }
         </style>
         """, 
         unsafe_allow_html=True

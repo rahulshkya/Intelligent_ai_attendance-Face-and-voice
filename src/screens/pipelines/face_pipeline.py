@@ -116,59 +116,54 @@ def train_classifier():
 # Predict Student
 # -----------------------------
 def predict_attendance(image_np):
-    print("FUNCTION STARTED")
-    print(__file__)
+  
 
     encodings = get_face_embeddings(image_np)
 
-    
-    print("Encodings:", encodings)
-    print("Encodings shape:", encodings.shape)
-    print("Length:", len(encodings))
 
     detected_students = {}
 
     model = get_trained_model()
 
-    print("MODEL =", model)
+
 
     if model is None:
         print("MODEL IS NONE")
         return {}, [], len(encodings)
 
-    print("MODEL IS NOT NONE")
+    
 
     clf = model["clf"]
     x_train = model["x"]
     y_train = model["y"]
 
     all_student_ids = sorted(set(y_train))
-    st.write("Before for loop")
+    
 
     for encoding in encodings:
-        st.write("Inside loop")
+        
 
         if clf is not None:
             predicted_id = int(clf.predict([encoding])[0])
         else:
             predicted_id = int(all_student_ids[0])
 
-        st.write("Predicted:", predicted_id)
+        
 
         student_embedding = x_train[y_train.index(predicted_id)]
 
         distance = np.linalg.norm(student_embedding - encoding)
 
-        st.write("Distance:", distance)
+       
 
         threshold = 0.60
 
-        st.write("Distance <= Threshold ?", distance <= threshold)
+      
 
         if distance <= threshold:
-            st.write("ADDING STUDENT")
+         
             detected_students[predicted_id] = distance
 
-    st.write("Detected Students:", detected_students)
+   
 
     return detected_students, all_student_ids, len(encodings)

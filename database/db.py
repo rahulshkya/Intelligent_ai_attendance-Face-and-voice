@@ -80,7 +80,7 @@ def get_teacher_subject(teacher_id):
 
     for sub in subjects:
         print(sub)
-        sub["Total students"] = sub.get("subject_student", [{}])[0].get("count", 0) if sub.get('subject_students') else 0
+        sub["Total students"] = sub.get("subject_students", [{}])[0].get("count", 0) if sub.get('subject_students') else 0
         attendance = sub.get('attendence_logs',[])
         unique_sessions =len(set(log['timestamp'] for log in attendance))
         sub['total_classes']=unique_sessions
@@ -110,4 +110,8 @@ def get_student_subjects(student_id):
 
 def get_student_attendence(student_id):
     response=supabase.table("attendence_logs").select("*,subjects(*)").eq("student_id",student_id).execute()
+    return response.data
+
+def create_attendance(attendance_to_log):
+    response=supabase.table("attendence_logs").insert(attendance_to_log).execute()
     return response.data
