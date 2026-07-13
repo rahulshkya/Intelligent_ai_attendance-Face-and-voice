@@ -8,7 +8,7 @@ from src.screens.ui.base_layout import (
 
 
 def home_screen():
-
+    
     style_background_home()
     style_base_layout()
 
@@ -56,7 +56,7 @@ def home_screen():
     }
 
     .desc{
-        color:#666;
+        color:#241f3a;
         font-size:18px;
         margin-top:10px;
     }
@@ -72,7 +72,10 @@ def home_screen():
     .feature h3{
         color:#5B5FEF;
     }
-
+    .st-key-student_card,
+    .st-key-teacher_card {
+    padding: 0 !important;
+    }
     </style>
     """, unsafe_allow_html=True)
 
@@ -80,7 +83,6 @@ def home_screen():
 
     st.markdown("""
     <div class="hero">
-        <h1>SNAP CLASS</h1>
         <p>AI Powered Attendance Management System</p>
     </div>
     """, unsafe_allow_html=True)
@@ -90,68 +92,55 @@ def home_screen():
 
     col1, col2 = st.columns(2, gap="large")
 
+    left, col1, col2, right = st.columns(
+    [2, 3, 3, 2],
+    gap="medium")
+
+
     with col1:
-      with st.container(border=True):
-        
-        st.image(
-            "assets/student_logo.png",
-            width=230
-        )
+        with st.container(border=True, key="student_card"):
+            st.image("assets/student_logo.png")
 
-        st.markdown("""
-        <div class="title">
-        🎓 Student Portal
-        </div>
+            st.markdown("""
+            <div class="title">🎓 Student Portal</div>
+            <div class="desc">
+            Login securely using Face Recognition and Voice Authentication.
+            </div>
+            """, unsafe_allow_html=True)
 
-        <div class="desc">
-        Login securely using Face Recognition and Voice Authentication.
-        </div>
-        """, unsafe_allow_html=True)
+            st.write("")
+            st.write("")
 
-        st.write("")
-        st.write("")
+            if st.button(
+                "🚀 Continue as Student",
+                width="content",
+                
+            ):
+                st.session_state["login_type"] = "student"
+                st.rerun()
 
-        if st.button(
-            "🚀 Continue as Student",
-            use_container_width=True,
-            key="student_btn"
-        ):
-            st.session_state["login_type"] = "student"
-            st.rerun()
-
-        st.markdown("</div>", unsafe_allow_html=True)
 
     with col2:
-      with st.container(border=True):
-       
+        with st.container(border=True, key="teacher_card"):
+            st.image("assets/teacher_logo.png")
 
-        st.image(
-            "assets/teacher_logo.png",
-            width=230
-        )
+            st.markdown("""
+            <div class="title">👨‍🏫 Teacher Portal</div>
+            <div class="desc">
+            Manage students, attendance records and classroom activities.
+            </div>
+            """, unsafe_allow_html=True)
 
-        st.markdown("""
-        <div class="title">
-        👨‍🏫 Teacher Portal
-        </div>
+            st.write("")
+            st.write("")
 
-        <div class="desc">
-        Manage students, attendance records and classroom activities.
-        </div>
-        """, unsafe_allow_html=True)
-
-        st.write("")
-        st.write("")
-
-        if st.button(
-            "🚀 Continue as Teacher",
-            use_container_width=True,
-            key="teacher_btn"
-        ):
-            st.session_state["login_type"] = "teacher"
-            st.rerun()
-
-        st.markdown("</div>", unsafe_allow_html=True)
+            if st.button(
+                "🚀 Continue as Teacher",
+                width="content",
+                
+            ):
+                st.session_state["login_type"] = "teacher"
+                st.rerun()
 
     st.write("")
     st.write("")
