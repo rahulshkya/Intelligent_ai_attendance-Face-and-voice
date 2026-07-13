@@ -450,7 +450,7 @@ def main():
         <h1 style='color:black; font-weight:800;'>Register or login as teacher</h1>
     </div>
     """, unsafe_allow_html=True)
-
+    footer_dashboard()
     register_tab, login_tab = st.tabs(['Register', 'Login'])
 
     with register_tab:
@@ -496,7 +496,7 @@ def main():
                     
     
        
-
+   
     if st.session_state.get('teacher_authenticated'):
         st.info(f"Logged in as {st.session_state.get('teacher_name', 'Teacher')} ({st.session_state.get('teacher_username', '')})")
         if st.button("Logout"):
@@ -508,7 +508,7 @@ def main():
 
             st.rerun()
 
-footer_dashboard()
+
 
 
 if __name__ == '__main__':
