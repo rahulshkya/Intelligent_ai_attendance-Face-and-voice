@@ -3,7 +3,7 @@ import pandas as pd
 import streamlit as st
 from datetime import datetime
 from src.screens.components.header import header_home
-from src.screens.components.footer import footer_home
+
 from src.screens.ui.base_layout import style_base_layout, style_background_dashboard
 from src.screens.components.footer import footer_dashboard
 from database.config import supabase
