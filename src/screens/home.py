@@ -1,6 +1,5 @@
 import streamlit as st
 from src.screens.components.header import header_home
-from src.screens.components.footer import footer_home
 from src.screens.ui.base_layout import (
     style_background_home,
     style_base_layout
@@ -193,4 +192,3 @@ def home_screen():
     st.write("")
     st.write("")
 
-    footer_home()
